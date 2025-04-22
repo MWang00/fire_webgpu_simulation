@@ -1,0 +1,13 @@
+{
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "/apps/lavalamp/index.html"
+      },
+      {
+        "source": "/flamewall",
+        "destination": "/apps/flamewall/index.html"
+      }
+    ]
+  }
+  

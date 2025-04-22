@@ -12,5 +12,8 @@ export default defineConfig({
         page2: resolve(__dirname, 'apps/flamewall/index.html'),
       }
     }
+  },
+  server: {
+    open: '/apps/lavalamp/index.html'
   }
 })
