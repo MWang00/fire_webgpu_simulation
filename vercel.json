@@ -2,11 +2,15 @@
     "rewrites": [
       {
         "source": "/",
-        "destination": "/apps/lavalamp/index.html"
+        "destination": "/apps/flame/index.html"
       },
       {
         "source": "/flamewall",
         "destination": "/apps/flamewall/index.html"
+      },
+      {
+        "source": "/lavalamp",
+        "destination": "/apps/lavalamp/index.html"
       }
     ]
   }

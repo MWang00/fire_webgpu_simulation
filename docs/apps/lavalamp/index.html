@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- … -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MiniGPU Fluid Demos</title>
   <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
+
+    body { margin: 0; overflow: hidden; font-family: sans-serif; }
+
     canvas {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: 0;
     }
 
-    .toggle-btn {
+    .nav {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 10px; left: 10px;
+      display: flex;
+      gap: 0.5em;
       z-index: 1;
-      padding: 0.5em 1.2em;
-      font-size: 1rem;
+    }
+
+    .toggle-btn {
+      padding: 0.5em 1em;
+      font-size: 0.9rem;
       font-weight: 500;
-      color: #ffffff;
+      color: #fff;
       background: rgba(255, 255, 255, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 12px;
@@ -41,19 +44,43 @@
       background: rgba(255, 255, 255, 0.10);
       transform: translateY(0);
     }
+
+    .toggle-btn.selected {
+      background: rgba(255, 255, 255, 0.35);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
   </style>
   <script type="module" crossorigin src="../../assets/page1-211c2403.js"></script>
   <link rel="modulepreload" crossorigin href="../../assets/twgl-full.module-f5b32412.js">
 </head>
 <body>
-  <button
-    class="toggle-btn"
-    onclick="location.href='/apps/flamewall/index.html'"
-  >
-    Go to Flame Wall
-  </button>
+  <div class="nav">
+    <button class="toggle-btn" data-target="/apps/flame/index.html">
+      Flame
+    </button>
+    <button class="toggle-btn" data-target="/apps/flamewall/index.html">
+      Flame Wall
+    </button>
+    <button class="toggle-btn" data-target="/apps/lavalamp/index.html">
+      Lava Lamp
+    </button>
+  </div>
 
   <canvas></canvas>
   
+
+  <script>
+    // mark the current page’s button as selected
+    const path = window.location.pathname;
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      const target = btn.getAttribute('data-target');
+      if (path.endsWith(target)) {
+        btn.classList.add('selected');
+      }
+      btn.addEventListener('click', () => {
+        window.location.href = target;
+      });
+    });
+  </script>
 </body>
 </html>

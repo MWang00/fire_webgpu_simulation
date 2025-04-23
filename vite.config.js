@@ -8,8 +8,9 @@ export default defineConfig({
     outDir: 'docs',
     rollupOptions: {
       input: {
-        page1: resolve(__dirname, 'apps/lavalamp/index.html'),
+        page1: resolve(__dirname, 'apps/flame/index.html'),
         page2: resolve(__dirname, 'apps/flamewall/index.html'),
+        page3: resolve(__dirname, 'apps/lavalamp/index.html'),
       }
     }
   },

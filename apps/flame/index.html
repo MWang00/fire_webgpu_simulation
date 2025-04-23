@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MiniGPU Fluid Demos</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+    .nav {
+      position: absolute;
+      top: 10px; left: 10px;
+      display: flex; gap: 0.5em;
+      z-index: 2;
+    }
+    .toggle-btn {
+      padding: 0.5em 1em;
+      font-size: 0.9rem; font-weight: 500;
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.15s;
+    }
+    .toggle-btn:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-2px);
+    }
+    .toggle-btn:active {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(0);
+    }
+    .toggle-btn.selected {
+      background: rgba(255,255,255,0.35);
+      border-color: rgba(255,255,255,0.7);
+    }
+    .controls {
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 15px 20px;
+      border-radius: 10px;
+      color: #fff;
+      z-index: 2;
+      max-width: 240px;
+    }
+    .slider-container {
+      margin-bottom: 12px;
+    }
+    .slider-container label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+    }
+    .slider-container input {
+      width: 100%;
+    }
+    .slider-container span {
+      margin-left: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <button class="toggle-btn" data-target="/apps/flame/index.html">Flame</button>
+    <button class="toggle-btn" data-target="/apps/flamewall/index.html">Flame Wall</button>
+    <button class="toggle-btn" data-target="/apps/lavalamp/index.html">Lava Lamp</button>
+  </div>
+
+  <div class="controls">
+    <div class="slider-container">
+      <label for="heatRadius">Heat Radius: <span id="heatRadiusValue">10</span></label>
+      <input type="range" id="heatRadius" min="5" max="50" value="10" step="1">
+    </div>
+    <div class="slider-container">
+      <label for="noiseStrength">Noise Strength: <span id="noiseStrengthValue">300</span></label>
+      <input type="range" id="noiseStrength" min="0" max="1000" value="300" step="10">
+    </div>
+  </div>
+
+  <canvas></canvas>
+  <script type="module" src="./main.js"></script>
+
+  <script>
+    const path = window.location.pathname;
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      const target = btn.getAttribute('data-target');
+      if (path.endsWith(target)) btn.classList.add('selected');
+      btn.addEventListener('click', () => {
+        window.location.href = target;
+      });
+    });
+
+    // sliders display values
+    const heatSlider = document.getElementById('heatRadius');
+    const noiseSlider = document.getElementById('noiseStrength');
+    const heatVal = document.getElementById('heatRadiusValue');
+    const noiseVal = document.getElementById('noiseStrengthValue');
+
+    // ensure span updates with slider
+    heatSlider.addEventListener('input', e => {
+      heatVal.textContent = e.target.value;
+    });
+    noiseSlider.addEventListener('input', e => {
+      noiseVal.textContent = e.target.value;
+    });
+  </script>
+</body>
+</html>
