@@ -72,6 +72,17 @@
       margin-left: 8px;
       font-weight: bold;
     }
+    .made-by {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding: 0.5em 1em;
+      font-size: 0.8rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 6px;
+      z-index: 2;
+    }
   </style>
 </head>
 <body>
@@ -93,6 +104,9 @@
   </div>
 
   <canvas></canvas>
+
+  <div class="made-by">Made by: Maxwell Wang, Jason Lai, Wonho Choi</div>
+
   <script type="module" src="./main.js"></script>
 
   <script>
@@ -111,13 +125,8 @@
     const heatVal = document.getElementById('heatRadiusValue');
     const noiseVal = document.getElementById('noiseStrengthValue');
 
-    // ensure span updates with slider
-    heatSlider.addEventListener('input', e => {
-      heatVal.textContent = e.target.value;
-    });
-    noiseSlider.addEventListener('input', e => {
-      noiseVal.textContent = e.target.value;
-    });
+    heatSlider.addEventListener('input', e => heatVal.textContent = e.target.value);
+    noiseSlider.addEventListener('input', e => noiseVal.textContent = e.target.value);
   </script>
 </body>
 </html>
